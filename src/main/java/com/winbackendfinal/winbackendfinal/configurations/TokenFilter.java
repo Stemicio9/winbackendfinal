@@ -30,6 +30,11 @@ public class TokenFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
+        if(path.contains("users/save")){
+            filterChain.doFilter(request, response);
+            return;
+        }
+
 
         String idToken = securityUtils.getTokenFromRequest(request);
         FirebaseToken decodedToken = null;
